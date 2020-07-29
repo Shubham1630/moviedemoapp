@@ -12,13 +12,16 @@ class MovieApi {
       if (response.statusCode == 200) {
         Map json = jsonDecode(response.body);
         var array = json['results'];
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < 1; i++) {
           Map map = array[i];
           String posterPath = map['poster_path'];
           String movieTitle = map['original_title'];
           String overView = map['overview'];
-          movieinfo.add(
-              MovieInfo('$posterThumbnail$posterPath', movieTitle, overView));
+          String voteAverage = map['vote_average'];
+          print(map);
+
+          movieinfo.add(MovieInfo('$posterThumbnail$posterPath', movieTitle,
+              overView, voteAverage));
         }
         return movieinfo.toList();
       } else {
